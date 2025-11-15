@@ -18,11 +18,11 @@
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-[#0a0a0a];
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Utilities */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
@@ -42,5 +42,42 @@
     --tw-exit-rotate: initial;
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
+  }
+
+  /* Soft amber field gradient with subtle noise-ready base */
+  .bg-amber-field {
+    background-image:
+      radial-gradient(60% 60% at 20% 20%, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.05) 40%, transparent 70%),
+      radial-gradient(50% 50% at 80% 30%, rgba(234, 179, 8, 0.2) 0%, rgba(234, 179, 8, 0.06) 45%, transparent 75%),
+      radial-gradient(40% 40% at 60% 80%, rgba(217, 119, 6, 0.18) 0%, rgba(217, 119, 6, 0.04) 40%, transparent 70%),
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    filter: saturate(110%);
+  }
+
+  /* Film grain / noise overlay built from layered gradients */
+  .noise-overlay {
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 2px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 2px),
+      radial-gradient(100% 100% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%);
+    mix-blend-mode: overlay;
+  }
+
+  /* Vignette/radial fade to draw focus to center */
+  .radial-fade {
+    background: radial-gradient(120% 100% at 50% 40%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.6) 100%);
+  }
+
+  /* Subtle honeycomb/branching hint using hex-like grid */
+  .pattern-honeycomb {
+    --c1: rgba(245, 158, 11, 0.09);
+    --c2: rgba(245, 158, 11, 0.0);
+    background-image:
+      linear-gradient(30deg, var(--c1) 12%, var(--c2) 12.5%, var(--c2) 87%, var(--c1) 87.5%, var(--c1)),
+      linear-gradient(150deg, var(--c1) 12%, var(--c2) 12.5%, var(--c2) 87%, var(--c1) 87.5%, var(--c1)),
+      linear-gradient(90deg, var(--c1) 12%, var(--c2) 12.5%, var(--c2) 87%, var(--c1) 87.5%, var(--c1));
+    background-size: 28px 49px;
+    background-position: 0 0, 0 0, 14px 24.5px;
+    mask-image: radial-gradient(60% 60% at 50% 40%, black 20%, transparent 80%);
   }
 }
